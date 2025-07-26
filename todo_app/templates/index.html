@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TODO list</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='reset.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+    <div class="header-block"></div>
+    <main>
+        <h1 class="title">TODO</h1>
+        <div class="todo-new new">
+            <button class="todo-button" disabled></button>
+            <input class="todo-text new-input" placeholder="Currently typing" id="new-task"></input>
+        </div>
+        <div class="todo-list">
+            {% for task in tasks %}
+                <div class="todo {% if task.completed %} completed {% endif %}">
+                    <button class="todo-button" data-id="{{ task.id }}"></button>
+                    <span class="todo-text {% if task.completed %} completed-text {% endif %}">{{ task.text }}</span>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="bottom">
+            <p class="todo-count">5 items left</p>
+            <div class="filter-block">
+                <button class="filter-button activated">All</button>
+                <button class="filter-button">Active</button>
+                <button class="filter-button">Completed</button>
+            </div>
+            <button class="clear-completed">Clear Completed</button>
+        </div>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='scrypt.js')}}"></script>
+</body>
+
+</html>
